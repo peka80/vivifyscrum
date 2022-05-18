@@ -1,0 +1,9 @@
+{
+  "sprintInfoDiv": "div[name='sprint-info-dropdown']",
+  "changeColumnList": "div[class='el-row'] li",
+  "taskTitleH2": "h2[class='vs-c-task__title']",
+  "taskTitelTextarea": "div[class='vs-c-task__header'] textarea",
+  "taskTitleButton": "div[class='vs-c-task__header'] button",
+  "dropdownButton": "div[name='dropdown-delete-item'] button",
+  "deleteTaskList": "ul[name='delete-item-menu'] li"
+}

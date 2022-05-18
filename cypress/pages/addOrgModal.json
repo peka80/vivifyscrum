@@ -1,0 +1,7 @@
+{
+  "orgNameInput": "input[name='name']",
+  "cancelButton": "button[name='prev_btn']",
+  "nextButton": "button[name='next_btn']",
+  "closeButton": "button[name='close-new-board-modal-btn']",
+  "uploadLogoAnchor": "div[class='el-upload-dragger'] a"
+}

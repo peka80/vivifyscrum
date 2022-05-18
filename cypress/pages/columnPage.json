@@ -1,0 +1,14 @@
+{
+  "addNewColumnButton": "div[class='vs-c-columns'] button",
+  "columnNameInput": "input[name='column-name']",
+  "addTaskButton": "div[class='vs-c-columns'] > div:nth-child(2) button",
+  "taskNameTextarea": "textarea[name='item_name']",
+  "saveTaskNameButton": "button[name='new_item_save']",
+  "cancelTaskNameButton": "button[name='new_item_cancel']",
+  "cardBodyP": "div[class='vs-c-task-card__body'] p",
+  "moveTaskSvg": "div[title='Move'] svg",
+  "columnDropDiv": "div[class='vs-c-task-dropdown-move']",
+  "columnList": "div[class='vs-c-task-dropdown-move'] li",
+  "columnOptionButton": "[class='vs-c-dropdown-wrapper'] button",
+  "startSprint": "[class='vs-c-dropdown-wrapper'] li"
+}
