@@ -1,0 +1,21 @@
+{
+  "userEmail": "peka.dragovic@outlook.com",
+  "userPass": "1.gold777",
+  "invEmail": {
+    "noMonkey": "peka.dragovicoutlook.com",
+    "noDomain": "peka.dragovic@outlook",
+    "space": "peka dragovic@outlook.com",
+    "wrongEmail": "petardragovic@outlook.com"
+  },
+  "invPass": "2.gold777",
+  "nameOrg": "01 Org Cypress",
+  "nameOrgEdit": "01 Edit Org Cypress",
+  "nameBoard": "01 Board Cypress Scrum",
+  "nameBoardEdit": "EDITED 01 Board Cypress Scrum",
+  "descriptBoard": "Description of the board.",
+  "nameBoardKanban": "New Kanban Board",
+  "nameColumn": "01 First Column{enter}",
+  "nameTask": "01 First Task",
+  "editNameTask": "EDITED 01 First Task",
+  "sprintDescript": "Started Sprint"
+}
