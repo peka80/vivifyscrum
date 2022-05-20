@@ -7,18 +7,19 @@ import addOrgModal from "../pages/addOrgModal.json";
 import projectMenu from "../pages/projectMenu.json";
 import dialogModal from "../pages/dialogModal.json";
 import addBoardModal from "../pages/addBoardModal.json";
+import data from "../fixtures/data.json";
 
 describe("Column Board CRUD tests", () => {
   it("VSB-CRUD01 Visit link and login", () => {
     cy.visit("/");
-    cy.get(loginPage.emailInput).clear().type("peka.dragovic@outlook.com");
-    cy.get(loginPage.passwordInput).type("1.gold777");
+    cy.get(loginPage.emailInput).clear().type(data.userEmail);
+    cy.get(loginPage.passwordInput).type(data.userPass);
     cy.get(loginPage.logInButton).click();
   });
 
   it("VSB-CRUD02 Create organization", () => {
     cy.get(orgPage.addOrgH2).click();
-    cy.get(addOrgModal.orgNameInput).clear().type("Org Cypress");
+    cy.get(addOrgModal.orgNameInput).clear().type(data.nameOrg);
     cy.get(addOrgModal.nextButton).click();
     cy.get(addOrgModal.nextButton).click();
     cy.get(boardPage.boardModalOkButton).click();
@@ -32,9 +33,7 @@ describe("Column Board CRUD tests", () => {
     cy.get(addBoardModal.nextButton).click({ force: true });
   });
   it("VSB-CRUD04 Create SCRUM board - board type not checked - negative", () => {
-    cy.get(addBoardModal.boardTitleInput)
-      .clear()
-      .type("01 Board Cypress Scrum");
+    cy.get(addBoardModal.boardTitleInput).clear().type(data.nameBoard);
     cy.get(addBoardModal.nextButton).click();
     cy.get(addBoardModal.nextButton).click({ force: true });
   });
@@ -53,8 +52,8 @@ describe("Column Board CRUD tests", () => {
   });
 
   it("VSB-CRUD07 Edit created board", () => {
-    cy.get(projectMenu.boardTitleInput).clear().type("02 EDIT Board Scrum");
-    cy.get(projectMenu.boardDescriptTextarea).type("Opis za kreirani board");
+    cy.get(projectMenu.boardTitleInput).clear().type(data.nameBoardEdit);
+    cy.get(projectMenu.boardDescriptTextarea).type(data.descriptBoard);
     cy.get(projectMenu.boardUpdateButton).click();
   });
 
@@ -64,7 +63,7 @@ describe("Column Board CRUD tests", () => {
     cy.get(boardPage.addNewBoardDiv).click();
     cy.get(addBoardModal.orgInput).click();
     cy.get(addBoardModal.orgListSpan).eq(-1).click();
-    cy.get(addBoardModal.boardTitleInput).clear().type("New Kanban Board");
+    cy.get(addBoardModal.boardTitleInput).clear().type(data.nameBoardKanban);
     cy.get(addBoardModal.nextButton).click();
     cy.get(addBoardModal.kanbanSpan).click();
     cy.get(addBoardModal.nextButton).click();
@@ -90,7 +89,7 @@ describe("Column Board CRUD tests", () => {
     cy.get(boardPage.boardModalOkButton).click();
     cy.get(projectMenu.configOrgLi).click();
     cy.get(projectMenu.deleteOrgButton).eq(4).click();
-    cy.get(dialogModal.passwordConfirmInput).type("1.gold777");
+    cy.get(dialogModal.passwordConfirmInput).type(data.userPass);
     cy.get(dialogModal.yesButton).click();
   });
 

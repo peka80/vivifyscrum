@@ -9,18 +9,19 @@ import dialogModal from "../pages/dialogModal.json";
 import addBoardModal from "../pages/addBoardModal.json";
 import columnPage from "../pages/columnPage.json";
 import taskModal from "../pages/taskModal.json";
+import data from "../fixtures/data.json";
 
 describe("Column Task CRUD tests", () => {
   it("VSCT-CRUD01 Visit link and login", () => {
     cy.visit("/");
-    cy.get(loginPage.emailInput).clear().type("peka.dragovic@outlook.com");
-    cy.get(loginPage.passwordInput).type("1.gold777");
+    cy.get(loginPage.emailInput).clear().type(data.userEmail);
+    cy.get(loginPage.passwordInput).type(data.userPass);
     cy.get(loginPage.logInButton).click();
   });
 
   it("VSCT-CRUD02 Create organization", () => {
     cy.get(orgPage.addOrgH2).click();
-    cy.get(addOrgModal.orgNameInput).clear().type("Org Cypress");
+    cy.get(addOrgModal.orgNameInput).clear().type(data.nameOrg);
     cy.get(addOrgModal.nextButton).click();
     cy.get(addOrgModal.nextButton).click();
     cy.get(boardPage.boardModalOkButton).click();
@@ -43,12 +44,12 @@ describe("Column Task CRUD tests", () => {
 
   it("VSCT-CRUM04 Add new column", () => {
     cy.get(columnPage.addNewColumnButton).eq(5).click();
-    cy.get(columnPage.columnNameInput).type("Nova kolona{enter}");
+    cy.get(columnPage.columnNameInput).type(data.nameColumn);
   });
 
   it("VSCT-CRUM05 Create task", () => {
     cy.get(columnPage.addTaskButton).eq(1).click({ force: true });
-    cy.get(columnPage.taskNameTextarea).type("Novi Task");
+    cy.get(columnPage.taskNameTextarea).type(data.nameTask);
     cy.get(columnPage.saveTaskNameButton).click();
   });
 
@@ -56,7 +57,7 @@ describe("Column Task CRUD tests", () => {
     cy.wait(1000);
     cy.get(columnPage.cardBodyP).eq(1).click();
     cy.get(taskModal.taskTitleH2).click();
-    cy.get(taskModal.taskTitelTextarea).clear().type("EDITED Novi Task");
+    cy.get(taskModal.taskTitelTextarea).clear().type(data.editNameTask);
     cy.get(taskModal.taskTitleButton).eq(1).click();
   });
 
@@ -74,7 +75,7 @@ describe("Column Task CRUD tests", () => {
   it("VSCT-CRUM09 Start Sprint", () => {
     cy.get(columnPage.columnOptionButton).eq(1).click();
     cy.get(columnPage.startSprint).eq(2).click();
-    cy.get(dialogModal.sprintGoalTextarea).clear().type("Start sprinta");
+    cy.get(dialogModal.sprintGoalTextarea).clear().type(data.sprintDescript);
     cy.get(dialogModal.yesButton).click();
   });
 
@@ -83,7 +84,7 @@ describe("Column Task CRUD tests", () => {
     cy.get(boardPage.boardModalOkButton).click();
     cy.get(projectMenu.configOrgLi).click();
     cy.get(projectMenu.deleteOrgButton).eq(4).click();
-    cy.get(dialogModal.passwordConfirmInput).type("1.gold777");
+    cy.get(dialogModal.passwordConfirmInput).type(data.userPass);
     cy.get(dialogModal.yesButton).click();
   });
 
