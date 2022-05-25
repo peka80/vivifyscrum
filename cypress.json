@@ -1,4 +1,10 @@
 {
   "baseUrl": "https://cypress.vivifyscrum-stage.com",
-  "watchForFileChanges": false
+  "watchForFileChanges": false,
+  "env": {
+    "email": "peka.dragovic@outlook.com",
+    "password": "1.gold777"
+  },
+  "video": false,
+  "reporter": "mochawesome"
 }
