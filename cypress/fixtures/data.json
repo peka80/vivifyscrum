@@ -7,15 +7,32 @@
     "space": "peka dragovic@outlook.com",
     "wrongEmail": "petardragovic@outlook.com"
   },
-  "invPass": "2.gold777",
+  "invPass": {
+    "wrongPass": "2.gold777",
+    "lessCharPass": "2.go"
+  },
+  "myOrgHeader": "My Organizations",
   "nameOrg": "01 Org Cypress",
   "nameOrgEdit": "01 Edit Org Cypress",
   "nameBoard": "01 Board Cypress Scrum",
+  "nameBoard51Char": "Lorem ipsum dolor sit amet, consectetur porta ante.",
   "nameBoardEdit": "EDITED 01 Board Cypress Scrum",
   "descriptBoard": "Description of the board.",
   "nameBoardKanban": "New Kanban Board",
   "nameColumn": "01 First Column{enter}",
   "nameTask": "01 First Task",
   "editNameTask": "EDITED 01 First Task",
-  "sprintDescript": "Started Sprint"
+  "sprintDescript": "Started Sprint",
+  "errorMsg": {
+    "emailField": "The email field must be a valid email",
+    "passField": "The password field is required",
+    "oopsMsg": "Oops! Your email/password combination is incorrect",
+    "passCharNum": "The password field must be at least 5 characters"
+  },
+  "boardConfig": {
+    "nameValidReq": "The board title field is required",
+    "nameValidNum": "The board title field may not be greater than 50 characters",
+    "codeValidReq": "The board code field is required",
+    "codeValidNum": "The board code field may not be greater than 4 characters"
+  }
 }

@@ -5,6 +5,7 @@
   "addOrgSpan": "li:nth-of-type(1) span",
   "accountImg": "div[class='vs-l-sidebar__user'] img",
   "boardAsideAnchore": "aside[class='vs-l-sidebar'] ul a",
+  "boardLi": "li[data-type='board']",
   "addNewBoardAside": "vs-c-list--boards span",
   "addBoardSpan": "div:nth-of-type(13) span"
 }
