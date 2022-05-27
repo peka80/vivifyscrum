@@ -123,6 +123,7 @@ describe("Column Board CRUD tests", () => {
       .eq(0)
       .should("be.visible")
       .and("contain", data.boardConfig.nameValidReq);
+
     cy.get(projectMenu.boardUpdateButton)
       .should("be.disabled")
       .and("have.css", "background-color", "rgb(204, 204, 204)");
@@ -196,9 +197,10 @@ describe("Column Board CRUD tests", () => {
     cy.get(projectMenu.boardValidSpan)
       .should("have.length", 3)
       .then(($span) => {
-        expect($span[0].innerText).to.eq(data.boardConfig.nameValidReq),
-          expect($span[1].innerText).to.eq(data.boardConfig.codeValidReq);
+        expect($span[0].innerText).to.eq(data.boardConfig.nameValidReq);
+        expect($span[1].innerText).to.eq(data.boardConfig.codeValidReq);
       });
+
     cy.get(projectMenu.boardUpdateButton)
       .should("be.disabled")
       .and("have.css", "background-color", "rgb(204, 204, 204)");
