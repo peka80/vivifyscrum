@@ -35,6 +35,7 @@ describe("Oragnization CRUD tests", () => {
       .then(($dot) => {
         expect($dot[0]).to.have.class("active");
       });
+
     cy.get(addOrgModal.cancelButton).click();
   });
   it("VSO-CRUD02 Create organization - positive", () => {
@@ -56,7 +57,9 @@ describe("Oragnization CRUD tests", () => {
       .then(($dot) => {
         expect($dot[1]).to.have.class("active");
       });
+
     cy.get(addOrgModal.orgTitleH2).should("have.text", data.nameOrg);
+
     cy.get(addOrgModal.nextButton).click();
     cy.get(boardPage.boardModalOkButton).click();
 
@@ -73,8 +76,10 @@ describe("Oragnization CRUD tests", () => {
       .then(($board) => {
         expect($board[0]).to.contain(data.nameOrg);
       });
+
     cy.get(orgPage.boardDiv).eq(-2).click();
     cy.get(boardPage.boardModalOkButton).click();
+
     cy.get(sidebar.boardAsideAnchore)
       .should("exist")
       .and("contain", data.nameOrg);
@@ -89,6 +94,7 @@ describe("Oragnization CRUD tests", () => {
     cy.get(sidebar.boardAsideAnchore)
       .should("exist")
       .and("contain", data.nameOrgEdit);
+
     cy.get(orgPage.orgDiv)
       .children()
       .should("have.length", 3)

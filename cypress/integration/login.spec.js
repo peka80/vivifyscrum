@@ -16,6 +16,7 @@ describe("Login to VivifyScrum", () => {
         expect($span[0].innerText).to.eq(data.errorMsg.emailField);
         expect($span[1].innerText).to.eq(data.errorMsg.passField);
       });
+
     cy.url().should("contain", "/login");
   });
 
@@ -30,6 +31,7 @@ describe("Login to VivifyScrum", () => {
       .then(($span) => {
         expect($span[1].innerText).to.eq(data.errorMsg.passField);
       });
+
     cy.url().should("contain", "/login");
   });
 
@@ -44,6 +46,7 @@ describe("Login to VivifyScrum", () => {
       .then(($span) => {
         expect($span[0].innerText).to.eq(data.errorMsg.emailField);
       });
+
     cy.url().should("contain", "/login");
   });
 
@@ -59,6 +62,7 @@ describe("Login to VivifyScrum", () => {
       .then(($span) => {
         expect($span[0].innerText).to.eq(data.errorMsg.emailField);
       });
+
     cy.url().should("contain", "/login");
   });
 
@@ -74,6 +78,7 @@ describe("Login to VivifyScrum", () => {
       .then(($span) => {
         expect($span[0].innerText).to.eq(data.errorMsg.emailField);
       });
+
     cy.url().should("contain", "/login");
   });
 
@@ -86,6 +91,7 @@ describe("Login to VivifyScrum", () => {
     cy.get(loginPage.invEmailPassSpan).should(($span) => {
       expect($span).to.contain(data.errorMsg.oopsMsg);
     });
+
     cy.url().should("contain", "/login");
   });
 
@@ -101,6 +107,7 @@ describe("Login to VivifyScrum", () => {
       .then(($span) => {
         expect($span[1].innerText).to.eq(data.errorMsg.passCharNum);
       });
+
     cy.url().should("contain", "/login");
   });
 
@@ -113,6 +120,7 @@ describe("Login to VivifyScrum", () => {
     cy.get(loginPage.invEmailPassSpan).should(($span) => {
       expect($span).to.contain(data.errorMsg.oopsMsg);
     });
+
     cy.url().should("contain", "/login");
   });
 

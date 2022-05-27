@@ -45,7 +45,9 @@ describe("Column Board CRUD tests", () => {
       .then(($dot) => {
         expect($dot[1]).to.have.class("active");
       });
+
     cy.get(addOrgModal.orgTitleH2).should("have.text", data.nameOrg);
+
     cy.get(addOrgModal.nextButton).click();
     cy.get(boardPage.boardModalOkButton).click();
 
@@ -61,6 +63,7 @@ describe("Column Board CRUD tests", () => {
     cy.get(addBoardModal.boardDotPagLi)
       .eq(1)
       .should("not.have.class", "active");
+
     cy.get(addBoardModal.nextButton).should("be.disabled");
     cy.get(addBoardModal.closeBoardModalButton).click();
   });
@@ -73,6 +76,7 @@ describe("Column Board CRUD tests", () => {
     cy.get(addBoardModal.boardDotPagLi)
       .eq(2)
       .should("not.have.class", "active");
+
     cy.get(addBoardModal.nextButton).should("be.disabled");
     cy.get(addBoardModal.closeBoardModalButton).click();
   });
@@ -82,6 +86,7 @@ describe("Column Board CRUD tests", () => {
     cy.get(boardPage.addNewBoardSpan).eq(-1).click();
     cy.get(addBoardModal.boardTitleInput).clear().type(data.nameBoard);
     cy.get(addBoardModal.nextButton).click();
+
     cy.get(addBoardModal.boardDotPagLi)
       .eq(2)
       .should("not.have.class", "active");
@@ -174,6 +179,7 @@ describe("Column Board CRUD tests", () => {
       .eq(1)
       .should("be.visible")
       .and("contain", data.boardConfig.codeValidReq);
+
     cy.get(projectMenu.boardUpdateButton)
       .should("be.disabled")
       .and("have.css", "background-color", "rgb(204, 204, 204)");
@@ -225,6 +231,7 @@ describe("Column Board CRUD tests", () => {
     cy.get(sidebar.boardLi)
       .should("be.visible")
       .and("contain", data.nameBoardEdit);
+
     cy.get(header.boardTitleH1)
       .should("be.visible")
       .and("have.attr", "title", data.nameBoardEdit);
