@@ -131,7 +131,7 @@ class Login {
     this.assertLoggedUser(orgHeader);
   }
 
-  loginAndOutUser(email, password, orgHeader) {
+  loginThenLogoutTheUser(email, password, orgHeader) {
     this.loginUserValid(email, password, orgHeader);
 
     cy.get(SidebarElements.accountImg).click();

@@ -145,7 +145,6 @@ class BoardModal {
     this.createImportBoard(nameBoard);
 
     cy.get(ProjectMenuElements.boardConfgLi).click();
-    // cy.get(ProjectMenuElements.boardTitleInput).clear().type(data.nameBoard);
     cy.get(ProjectMenuElements.boardCodeInput).clear();
 
     cy.get(ProjectMenuElements.boardValidSpan)

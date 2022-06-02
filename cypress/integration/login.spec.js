@@ -62,7 +62,7 @@ describe("Login to VivifyScrum", () => {
   });
 
   it("VSL-CRUD08 Login & Logout - valid credential - positive", () => {
-    login.loginAndOutUser(
+    login.loginThenLogoutTheUser(
       Cypress.env("email"),
       Cypress.env("password"),
       data.myOrgHeader
