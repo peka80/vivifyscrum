@@ -35,69 +35,62 @@ class BoardModal {
     cy.get(BoardModalElements.closeBoardModalButton).click();
   }
 
-  createScrumBoard(boardName) {
+  createBoard(boardName) {
     this.openBoardModal();
 
-    cy.get(BoardModalElements.boardTitleInput).clear().type(boardName);
-    cy.get(BoardModalElements.nextButton).click();
+    cy.get(BoardModalElements.boardDotPagLi).then(($dot) => {
+      if ($dot.length < 5) {
+        cy.get(BoardModalElements.boardTitleInput).clear().type(boardName);
+        cy.get(BoardModalElements.nextButton).click();
 
-    cy.get(BoardModalElements.boardDotPagLi)
-      .eq(2)
-      .should("not.have.class", "active");
+        cy.get(BoardModalElements.boardDotPagLi)
+          .eq(2)
+          .should("not.have.class", "active");
 
-    cy.get(BoardModalElements.scrumSpan).click();
-    cy.get(BoardModalElements.nextButton).click();
+        cy.get(BoardModalElements.scrumSpan).click();
+        cy.get(BoardModalElements.nextButton).click();
 
-    cy.get(BoardModalElements.boardDotPagLi)
-      .eq(3)
-      .should("not.have.class", "active");
+        cy.get(BoardModalElements.boardDotPagLi)
+          .eq(3)
+          .should("not.have.class", "active");
 
-    cy.get(BoardModalElements.nextButton).click();
+        cy.get(BoardModalElements.nextButton).click();
 
-    cy.get(BoardModalElements.boardDotPagLi)
-      .eq(3)
-      .should("have.class", "active");
+        cy.get(BoardModalElements.boardDotPagLi)
+          .eq(3)
+          .should("have.class", "active");
 
-    cy.get(BoardModalElements.nextButton).click();
+        cy.get(BoardModalElements.nextButton).click();
+      } else {
+        cy.get(BoardModalElements.boardTitleInput).clear().type(boardName);
+        cy.get(BoardModalElements.nextButton).click();
 
-    cy.get(SidebarElements.boardLi)
-      .should("be.visible")
-      .and("contain", boardName);
-    cy.get(HeaderElements.boardTitleH1)
-      .should("be.visible")
-      .and("contain", boardName);
-  }
+        cy.get(BoardModalElements.boardDotPagLi)
+          .eq(2)
+          .should("not.have.class", "active");
 
-  createImportBoard(boardName) {
-    this.openBoardModal();
+        cy.get(BoardModalElements.scrumSpan).click();
+        cy.get(BoardModalElements.nextButton).click();
 
-    cy.get(BoardModalElements.boardTitleInput).clear().type(boardName);
-    cy.get(BoardModalElements.nextButton).click();
+        cy.get(BoardModalElements.boardDotPagLi)
+          .eq(3)
+          .should("not.have.class", "active");
 
-    cy.get(BoardModalElements.boardDotPagLi)
-      .eq(2)
-      .should("not.have.class", "active");
+        cy.get(BoardModalElements.nextButton).click();
 
-    cy.get(BoardModalElements.scrumSpan).click();
-    cy.get(BoardModalElements.nextButton).click();
+        cy.get(BoardModalElements.boardDotPagLi)
+          .eq(4)
+          .should("not.have.class", "active");
 
-    cy.get(BoardModalElements.boardDotPagLi)
-      .eq(3)
-      .should("not.have.class", "active");
+        cy.get(BoardModalElements.nextButton).click();
 
-    cy.get(BoardModalElements.nextButton).click();
+        cy.get(BoardModalElements.boardDotPagLi)
+          .eq(4)
+          .should("have.class", "active");
 
-    cy.get(BoardModalElements.boardDotPagLi)
-      .eq(4)
-      .should("not.have.class", "active");
-
-    cy.get(BoardModalElements.nextButton).click();
-
-    cy.get(BoardModalElements.boardDotPagLi)
-      .eq(4)
-      .should("have.class", "active");
-
-    cy.get(BoardModalElements.nextButton).click();
+        cy.get(BoardModalElements.nextButton).click();
+      }
+    });
 
     cy.get(SidebarElements.boardLi)
       .should("be.visible")
@@ -108,7 +101,7 @@ class BoardModal {
   }
 
   assertEditNoName(nameBoard, nameValid) {
-    this.createImportBoard(nameBoard);
+    this.createBoard(nameBoard);
 
     cy.get(ProjectMenuElements.boardConfgLi).click();
     cy.get(ProjectMenuElements.boardTitleInput).clear();
@@ -124,7 +117,7 @@ class BoardModal {
   }
 
   assertEdit51CharName(nameBoard, name51, nameValid) {
-    this.createImportBoard(nameBoard);
+    this.createBoard(nameBoard);
 
     cy.get(ProjectMenuElements.boardConfgLi).click();
     cy.get(ProjectMenuElements.boardTitleInput).clear().type(name51);
@@ -142,7 +135,7 @@ class BoardModal {
   }
 
   assertEditNoCode(nameBoard, codeValid) {
-    this.createImportBoard(nameBoard);
+    this.createBoard(nameBoard);
 
     cy.get(ProjectMenuElements.boardConfgLi).click();
     cy.get(ProjectMenuElements.boardCodeInput).clear();
@@ -158,7 +151,7 @@ class BoardModal {
   }
 
   assertNoCodeNoName(nameBoard, nameValid, codeValid) {
-    this.createImportBoard(nameBoard);
+    this.createBoard(nameBoard);
 
     cy.get(ProjectMenuElements.boardConfgLi).click();
     cy.get(ProjectMenuElements.boardTitleInput).clear();
@@ -177,7 +170,7 @@ class BoardModal {
   }
 
   editCreatedBoard(nameBoard, editName, addDescript) {
-    this.createImportBoard(nameBoard);
+    this.createBoard(nameBoard);
 
     cy.get(ProjectMenuElements.boardConfgLi).click();
     cy.get(ProjectMenuElements.boardTitleInput).clear().type(editName);
@@ -194,7 +187,7 @@ class BoardModal {
   }
 
   deleteBoard(nameBoard) {
-    this.createImportBoard(nameBoard);
+    this.createBoard(nameBoard);
 
     cy.get(SidebarElements.boardAsideAnchore).eq(-1).click();
     cy.get(ProjectMenuElements.boardConfgLi).click();

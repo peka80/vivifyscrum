@@ -34,7 +34,7 @@ describe("Column Board CRUD tests", () => {
   });
 
   it("VSB-CRUD03 Create SCRUM board", () => {
-    boardModal.createScrumBoard(data.nameBoard);
+    boardModal.createBoard(data.nameBoard);
   });
 
   it("VSB-CRUD04 Edit created board - no name - negative", () => {
