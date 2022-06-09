@@ -37,7 +37,7 @@ describe("Login to VivifyScrum", () => {
     );
   });
 
-  it.only("VSL-CRUD06 Login - wrong email - Negative", () => {
+  it("VSL-CRUD06 Login - wrong email - Negative", () => {
     login.assertWrongEmail(
       data.invEmail.wrongEmail,
       data.userPass,
@@ -53,7 +53,7 @@ describe("Login to VivifyScrum", () => {
     );
   });
 
-  it.only("VSL-CRUD08 Login - wrong password - Negative", () => {
+  it("VSL-CRUD08 Login - wrong password - Negative", () => {
     login.assertWrongPass(
       data.userEmail,
       data.invPass.wrongPass,
