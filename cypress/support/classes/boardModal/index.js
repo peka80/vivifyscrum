@@ -5,6 +5,8 @@ import HeaderElements from "../../elements/headerElements";
 import ProjectMenuElements from "../../elements/projectMenuElements";
 import DialogModalElements from "../../elements/dialogModalElements";
 
+let boardID;
+
 class BoardModal {
   openBoardModal() {
     cy.get(SidebarElements.boardAsideAnchore).eq(-1).click();
@@ -36,6 +38,11 @@ class BoardModal {
   }
 
   createBoard(boardName) {
+    cy.intercept({
+      method: "POST",
+      url: "/api/v2/boards",
+    }).as("createBoard");
+
     this.openBoardModal();
 
     cy.get(BoardModalElements.boardDotPagLi).then(($dot) => {
@@ -98,6 +105,13 @@ class BoardModal {
     cy.get(HeaderElements.boardTitleH1)
       .should("be.visible")
       .and("contain", boardName);
+
+    cy.wait("@createBoard").then(({ request, response }) => {
+      expect(response.statusCode).to.equal(201);
+      expect(request.method).to.equal("POST");
+      boardID = response.body.id;
+      cy.url().should("contain", `/boards/${boardID}`);
+    });
   }
 
   assertEditNoName(nameBoard, nameValid) {

@@ -1,5 +1,6 @@
 {
   "baseUrl": "https://cypress.vivifyscrum-stage.com",
+  "apiUrl": "https://cypress-api.vivifyscrum-stage.com",
   "watchForFileChanges": false,
   "env": {
     "email": "peka.dragovic@outlook.com",

@@ -33,7 +33,7 @@ describe("Oragnization CRUD tests", () => {
   });
 
   it("VSO-CRUD04 Change last created organization name - positive", () => {
-    org.editOrgName(data.nameOrgEdit, data.nameOrgEdit, data.nameOrgEdit);
+    org.editOrgName(data.nameOrgEdit);
   });
 
   it("VSO-CRUD05 Delete organization - positive", () => {

@@ -28,21 +28,21 @@ class Org {
     cy.get(BordElements.boardModalOkButton).click();
   }
 
-  editOrgName(editName1, editName2, editName3) {
+  editOrgName(editName) {
     cy.get(HeaderElements.myOrganizationsImg).click();
     cy.get(OrgElements.editOrgNameSpan).eq(-2).click();
-    cy.get(OrgElements.orgNameUpdateInput).clear().type(editName1);
+    cy.get(OrgElements.orgNameUpdateInput).clear().type(editName);
     cy.get(OrgElements.saveEditeNameButton).click();
 
     cy.get(SidebarElements.boardAsideAnchore)
       .should("exist")
-      .and("contain", editName2);
+      .and("contain", editName);
 
     cy.get(OrgElements.orgDiv)
       .children()
       .should("have.length", 3)
       .then(($board) => {
-        expect($board[0]).to.contain(editName3);
+        expect($board[0]).to.contain(editName);
       });
   }
 

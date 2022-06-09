@@ -2,9 +2,6 @@ import OrgModalElements from "../../elements/orgModalElements";
 import OrgElements from "../../elements/orgElements";
 import BordElements from "../../elements/bordElements";
 import SidebarElements from "../../elements/sidebarElements";
-import Utils from "../utils";
-
-const utils = new Utils();
 
 class OrgModal {
   assertNoOrgName() {
@@ -21,7 +18,12 @@ class OrgModal {
     cy.get(OrgModalElements.closeButton).click();
   }
 
-  createOrgNoAvatar(orgName, filename) {
+  createOrgNoAvatar(orgName) {
+    cy.intercept({
+      method: "POST",
+      url: "/api/v2/organizations",
+    }).as("createOrg");
+
     cy.get(OrgElements.addOrgH2).click();
 
     cy.get(OrgModalElements.orgNameInput).clear().type(orgName);
@@ -50,6 +52,12 @@ class OrgModal {
     cy.get(SidebarElements.boardAsideAnchore)
       .should("exist")
       .and("contain", orgName);
+
+    cy.wait("@createOrg").then(({ request, response }) => {
+      expect(response.statusCode).to.equal(201);
+      expect(request.method).to.equal("POST");
+      expect(response.body.name).to.equal(orgName);
+    });
   }
 }
 
