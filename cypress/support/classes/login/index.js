@@ -88,6 +88,8 @@ class Login {
   }
 
   assertWrongEmail(email, password, errorMsg) {
+    cy.intercept("api/v2/login").as("wrongEmailPass");
+
     cy.get(LoginElements.emailInput).clear().type(email);
     cy.get(LoginElements.passwordInput).clear().type(password);
     this.clickLoginBtn();
@@ -96,6 +98,14 @@ class Login {
       expect($span).to.contain(errorMsg);
     });
     this.assertLoginPage();
+
+    cy.get("@wrongEmailPass").should(({ request, response }) => {
+      expect(request.method).to.equal("POST");
+      expect(response.statusCode).to.equal(401);
+      expect(response.body).to.include({
+        message: "Unauthenticated.",
+      });
+    });
   }
 
   assertLessCharPass(email, password, errorMsg) {
@@ -113,6 +123,8 @@ class Login {
   }
 
   assertWrongPass(email, password, errorMsg) {
+    cy.intercept("api/v2/login").as("wrongEmailPass");
+
     cy.get(LoginElements.emailInput).clear().type(email);
     cy.get(LoginElements.passwordInput).clear().type(password);
     this.clickLoginBtn();
@@ -121,6 +133,14 @@ class Login {
       expect($span).to.contain(errorMsg);
     });
     this.assertLoginPage();
+
+    cy.get("@wrongEmailPass").should(({ request, response }) => {
+      expect(request.method).to.equal("POST");
+      expect(response.statusCode).to.equal(401);
+      expect(response.body).to.include({
+        message: "Unauthenticated.",
+      });
+    });
   }
 
   loginUserValid(email, password, orgHeader) {
@@ -134,6 +154,8 @@ class Login {
   loginThenLogoutTheUser(email, password, orgHeader) {
     this.loginUserValid(email, password, orgHeader);
 
+    cy.intercept("api/v2/logout").as("logout");
+
     cy.get(SidebarElements.accountImg).click();
     cy.get(ProjectMenu.accountProfileLi).click();
     cy.get(HeaderElements.logOutButton).click();
@@ -141,6 +163,14 @@ class Login {
     this.assertLoginPage();
 
     cy.get(SidebarElements.accountImg).should("not.exist");
+
+    cy.get("@logout").should(({ request, response }) => {
+      expect(request.method).to.equal("POST");
+      expect(response.statusCode).to.equal(201);
+      expect(response.body).to.include({
+        message: "Successfully logged out",
+      });
+    });
   }
 
   logoutUser() {
