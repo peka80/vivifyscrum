@@ -1,23 +1,17 @@
 import data from "../fixtures/data.json";
 import Utils from "../support/classes/utils";
-import Login from "../support/classes/login";
 import Org from "../support/classes/organization";
 import OrgModal from "../support/classes/orgModal";
 
 const utils = new Utils();
-const login = new Login();
 const org = new Org();
 const orgModal = new OrgModal();
 
 describe("Oragnization CRUD tests", () => {
-  before("Login", () => {
-    utils.visitUrl(Cypress.config("baseUrl"));
+  beforeEach("Login", () => {
+    cy.loginViaAPI();
 
-    login.loginUserValid(
-      Cypress.env("email"),
-      Cypress.env("password"),
-      data.myOrgHeader
-    );
+    utils.visitUrl(Cypress.config("baseUrl"));
   });
 
   it("VSO-CRUD01 Create organization - no name - negative", () => {
@@ -25,22 +19,22 @@ describe("Oragnization CRUD tests", () => {
   });
 
   it("VSO-CRUD02 Create organization - no logo img - positive", () => {
-    orgModal.createOrgNoAvatar(data.nameOrg);
+    cy.createOrgViaAPI(data.nameOrg);
   });
 
   it("VSO-CRUD03 Read last created organization", () => {
-    org.viewCreatedOrg(data.nameOrg, data.nameOrg);
+    org.viewCreatedOrg(data.nameOrg);
   });
 
   it("VSO-CRUD04 Change last created organization name - positive", () => {
-    org.editOrgName(data.nameOrgEdit);
+    cy.updateOrgViaAPI(data.nameOrgEdit);
   });
 
   it("VSO-CRUD05 Delete organization - positive", () => {
-    org.deleteOrg(data.userPass, data.nameOrgEdit);
+    cy.deleteOrgViaAPI();
   });
 
   after("Logout from VivifyScrum", () => {
-    login.logoutUser();
+    cy.logoutViaUI();
   });
 });
