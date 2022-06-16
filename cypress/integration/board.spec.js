@@ -13,13 +13,9 @@ const boardModal = new BoardModal();
 
 describe("Column Board CRUD tests", () => {
   before("Login to VivifyScrum", () => {
-    utils.visitUrl(Cypress.config("baseUrl"));
+    cy.loginViaAPI();
 
-    login.loginUserValid(
-      Cypress.env("email"),
-      Cypress.env("password"),
-      data.myOrgHeader
-    );
+    utils.visitUrl(Cypress.config("baseUrl"));
   });
 
   beforeEach("Create organization ", () => {

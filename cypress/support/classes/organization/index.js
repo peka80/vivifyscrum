@@ -10,19 +10,19 @@ class Org {
     cy.get(OrgElements.addOrgH2).click();
   }
 
-  viewCreatedOrg(orgName1, orgNam2) {
+  viewCreatedOrg(orgName) {
     cy.get(HeaderElements.myOrganizationsImg).click();
 
     cy.get(OrgElements.orgDiv)
       .children()
       .should("have.length", 3)
       .then(($board) => {
-        expect($board[0]).to.contain(orgName1);
+        expect($board[0]).to.contain(orgName);
       });
 
     cy.get(SidebarElements.boardAsideAnchore)
       .should("exist")
-      .and("contain", orgNam2);
+      .and("contain", orgName);
 
     cy.get(OrgElements.boardDiv).eq(-2).click();
     cy.get(BordElements.boardModalOkButton).click();

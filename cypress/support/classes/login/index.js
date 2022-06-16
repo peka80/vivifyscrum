@@ -174,6 +174,8 @@ class Login {
   }
 
   logoutUser() {
+    cy.intercept("POST", "/api/v2/logout").as("logout");
+
     cy.get(SidebarElements.accountImg).click();
     cy.get(ProjectMenu.accountProfileLi).click();
     cy.get(HeaderElements.logOutButton).click();
@@ -181,6 +183,14 @@ class Login {
     this.assertLoginPage();
 
     cy.get(SidebarElements.accountImg).should("not.exist");
+
+    cy.wait("@logout").should(({ request, response }) => {
+      expect(request.method).to.equal("POST");
+      expect(response.statusCode).to.equal(201);
+      expect(response.body).to.include({
+        message: "Successfully logged out",
+      });
+    });
   }
 }
 

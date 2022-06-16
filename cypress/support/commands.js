@@ -23,3 +23,78 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import Login from "../support/classes/login";
+
+const login = new Login();
+let orgID;
+
+Cypress.Commands.add("loginViaAPI", () => {
+  cy.request({
+    method: "POST",
+    url: Cypress.config("apiUrl") + "/api/v2/login",
+    body: {
+      email: Cypress.env("email"),
+      "g-recaptcha-response": "",
+      password: Cypress.env("password"),
+    },
+  }).then((response) => {
+    expect(response.status).to.equal(200);
+    expect(response.body).to.have.property("token");
+    expect(response.body).to.have.property("user");
+    window.localStorage.setItem("token", response.body.token);
+    window.localStorage.setItem("user_id", response.body.user.id);
+    window.localStorage.setItem("user", JSON.stringify(response.body.user));
+  });
+});
+
+Cypress.Commands.add("logoutViaUI", () => {
+  login.logoutUser();
+});
+
+Cypress.Commands.add("createOrgViaAPI", (orgName) => {
+  cy.request({
+    method: "POST",
+    url: `${Cypress.config("apiUrl")}/api/v2/organizations`,
+    headers: {
+      authorization: `Bearer ${window.localStorage.getItem("token")}`,
+    },
+    body: {
+      name: orgName,
+    },
+  }).then((response) => {
+    expect(response.status).to.equal(201);
+    orgID = response.body.id;
+  });
+});
+
+Cypress.Commands.add("updateOrgViaAPI", (updatedName) => {
+  cy.request({
+    method: "PUT",
+    url: `${Cypress.config("apiUrl")}/api/v2/organizations/${orgID}`,
+    headers: {
+      authorization: `Bearer ${window.localStorage.getItem("token")}`,
+    },
+    body: {
+      name: updatedName,
+    },
+  }).then((response) => {
+    expect(response.status).to.equal(200);
+    expect(response.body.name).to.equal(updatedName);
+  });
+});
+
+Cypress.Commands.add("deleteOrgViaAPI", () => {
+  cy.request({
+    method: "POST",
+    url: `${Cypress.config("apiUrl")}/api/v2/organizations/${orgID}`,
+    headers: {
+      authorization: `Bearer ${window.localStorage.getItem("token")}`,
+    },
+    body: {
+      passwordOrEmail: Cypress.env("password"),
+    },
+  }).then((response) => {
+    expect(response.status).to.equal(201);
+  });
+});
