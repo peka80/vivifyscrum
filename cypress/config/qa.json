@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://vivifyscrum-stage.com/",
+  "env": {
+    "environment": "qa",
+    "email": "petar.dragovic+scrum@vivifyideas.com",
+    "password": "1.gold777"
+  }
+}
