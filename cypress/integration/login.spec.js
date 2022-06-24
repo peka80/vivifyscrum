@@ -14,17 +14,17 @@ describe("Login to VivifyScrum", () => {
   });
 
   it("VSL-CRUD02 Login - password empty - Negative", () => {
-    login.assertNoPassword(data.userEmail, data.errorMsg.passField);
+    login.assertNoPassword(Cypress.env("email"), data.errorMsg.passField);
   });
 
   it("VSL-CRUD03 Login - email empty - Negative", () => {
-    login.assertNoEmail(data.errorMsg.emailField, data.userPass);
+    login.assertNoEmail(data.errorMsg.emailField, Cypress.env("password"));
   });
 
   it("VSL-CRUD04 Login - email no @ - Negative", () => {
     login.assertNoMonkeySignEmail(
       data.invEmail.noMonkey,
-      data.userPass,
+      Cypress.env("password"),
       data.errorMsg.emailField
     );
   });
@@ -32,7 +32,7 @@ describe("Login to VivifyScrum", () => {
   it("VSL-CRUD05 Login - email no domain - Negative", () => {
     login.assertNoMonkeySignEmail(
       data.invEmail.noDomain,
-      data.userPass,
+      Cypress.env("password"),
       data.errorMsg.emailField
     );
   });
@@ -40,14 +40,14 @@ describe("Login to VivifyScrum", () => {
   it("VSL-CRUD06 Login - wrong email - Negative", () => {
     login.assertWrongEmail(
       data.invEmail.wrongEmail,
-      data.userPass,
+      Cypress.env("password"),
       data.errorMsg.oopsMsg
     );
   });
 
   it("VSL-CRUD07 Login - less then 5 char password - Negative", () => {
     login.assertLessCharPass(
-      data.userEmail,
+      Cypress.env("email"),
       data.invPass.lessCharPass,
       data.errorMsg.passCharNum
     );
@@ -55,7 +55,7 @@ describe("Login to VivifyScrum", () => {
 
   it("VSL-CRUD08 Login - wrong password - Negative", () => {
     login.assertWrongPass(
-      data.userEmail,
+      Cypress.env("email"),
       data.invPass.wrongPass,
       data.errorMsg.oopsMsg
     );
