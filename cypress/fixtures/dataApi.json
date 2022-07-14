@@ -1,0 +1,19 @@
+{
+  "apiBaseUrl": "https://cypress-api.vivifyscrum-stage.com",
+  "user": {
+    "email": "peka.dragovic@outlook.com",
+    "password": "1.gold777"
+  },
+  "wrongData": {
+    "string": "daohg"
+  },
+
+  "boardType": {
+    "scrum": "scrum_board",
+    "kanban": "kanban_board"
+  },
+
+  "invalidNames": {
+    "longName": "Lorem ipsum dolor sit amet, consectetur porta ante."
+  }
+}
